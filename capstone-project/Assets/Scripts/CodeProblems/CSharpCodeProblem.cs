@@ -8,9 +8,10 @@ public class CSharpCodeProblem : CodeProblem
     private SyntaxNode _root;
 
     public CSharpCodeProblem(string codeBase, string codeAnswer)
-        : base(codeBase, codeAnswer) 
+        : base(codeBase, codeAnswer)
     {
-
+        SyntaxTree tree = CSharpSyntaxTree.ParseText(Format(codeAnswer));
+        _root = tree.GetRoot();
     }
 
     public override string Format(string code)
