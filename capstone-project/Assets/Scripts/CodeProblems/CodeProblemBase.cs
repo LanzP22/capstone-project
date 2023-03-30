@@ -36,6 +36,7 @@ public class CodeProblemGroup
         this.pythonCodeProblem = pythonCodeProblem;
         this.javaCodeProblem = javaCodeProblem;
 
+        // _codeProblemGroups.TryAdd(id, this);
         _codeProblemGroups.Add(id, this);
     }
 }
