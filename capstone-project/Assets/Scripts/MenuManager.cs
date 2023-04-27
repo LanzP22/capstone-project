@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class MenuButtonHover : MonoBehaviour
+public class MenuManager : MonoBehaviour
 {
     public Color hoverColor;
 
@@ -24,5 +25,15 @@ public class MenuButtonHover : MonoBehaviour
     public void PointerExit()
     {
         text.color = defaultColor;
+    }
+
+    public void LoadLevel()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

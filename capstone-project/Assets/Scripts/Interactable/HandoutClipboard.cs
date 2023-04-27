@@ -4,20 +4,11 @@ using UnityEngine;
 
 public class HandoutClipboard : Interactable
 {
-    public Canvas canvas;
-
-    void Start()
-    {
-    }
-
-    void Update()
-    {
-        
-    }
+    public GameObject canvas;
 
     public override void Interact()
     {
-        canvas.enabled = !canvas.enabled;
-        Debug.Log("Interacted with " + gameObject.name);
+        canvas.SetActive(!canvas.activeInHierarchy);
+        Globals.isPlayerFrozen = !canvas.activeInHierarchy;
     }
 }
