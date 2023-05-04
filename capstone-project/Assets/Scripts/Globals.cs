@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class Globals
 {
-    public static bool isPlayerFrozen = true;
+    public static bool isPlayerFrozen = false;
 }

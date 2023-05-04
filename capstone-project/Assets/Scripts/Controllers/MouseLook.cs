@@ -16,7 +16,7 @@ public class MouseLook : MonoBehaviour
 
     void Update()
     {
-        if (!Globals.isPlayerFrozen)
+        if (Globals.isPlayerFrozen)
             return;
 
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
