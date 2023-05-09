@@ -8,7 +8,21 @@ public class GuideBook : Interactable
 
     public override void Interact()
     {
-        canvas.SetActive(!canvas.activeInHierarchy);
-        Globals.isPlayerFrozen = canvas.activeInHierarchy;
+        canvas.SetActive(true);
+        Globals.isPlayerFrozen = true;
+    }
+
+    public void CloseCanvas()
+    {
+        canvas.SetActive(false);
+        Globals.isPlayerFrozen = false;
+    }
+
+    public void Update()
+    {
+        if (canvas.activeInHierarchy && Input.GetKey(KeyCode.Escape)) 
+        {
+            CloseCanvas();
+        }
     }
 }
