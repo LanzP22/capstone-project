@@ -10,10 +10,15 @@ public class Example1 : MonoBehaviour
     public TextMeshProUGUI codeText;
     public TextMeshProUGUI outputText;
 
+    public void Awake()
+    {
+        UpdateCode();
+    }
+
     public void UpdateCode()
     {
         string newCode =
-            $"string name = \"{nameInput.text}\";\n" +
+            $"<color=blue>string</color> name = \"{nameInput.text}\";\n" +
             $"Console.WriteLine(name);";
 
         codeText.text = newCode;
