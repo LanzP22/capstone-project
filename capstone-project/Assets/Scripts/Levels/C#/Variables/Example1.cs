@@ -1,60 +1,42 @@
-using Nobi.UiRoundedCorners;
+using JetBrains.Annotations;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
-public class Example1 : MonoBehaviour
+public class Example1 : ExampleCode
 {
+    [Header("Fields")]
     public TMP_InputField nameInput;
-    public TextMeshProUGUI codeText;
-    public TextMeshProUGUI outputText;
 
-    public void Awake()
-    {
-        UpdateCode();
-    }
+    private string defaultName = "Lanz";
 
-    public void UpdateCode()
+    public override void UpdateCode()
     {
         string newCode =
-            $"<color=blue>string</color> name = \"{nameInput.text}\";\n" +
-            $"Console.WriteLine(name);";
+           $"<style=keyword>string</style> name = <style=string>\"{nameInput.text}\"</style>;\n" +
+            "<style=class>Console</style>.<style=method>WriteLine</style>(name);";
 
         codeText.text = newCode;
 
-        UpdateLayout();
+        UpdateLayout(this);
     }
 
-    public void RunCode()
+    public override void RunCode()
     {
         outputText.text = nameInput.text;
 
-        UpdateLayout();
+        UpdateLayout(this);
     }
 
-    public void ResetCode()
+    public override void ResetCode()
     {
-        nameInput.text = "Lanz";
+        nameInput.text = defaultName;
         UpdateCode();
-
-        UpdateLayout();
     }
 
-    public void CopyCode()
+    public override void CopyCode()
     {
         GUIUtility.systemCopyBuffer = codeText.text;
-    }
-
-    void UpdateLayout()
-    {
-        // Sometimes, dynamically resizing contents of an object by adding new contents such as text
-        // triggers a bug that ruins the whole layout of the game object which makes it look weird.
-        // This solution fixes that bug by refreshing the RectTransform of the parent game object.
-
-        LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
-        LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
-
-        // TODO: Fix rounded corners
     }
 }

@@ -9,9 +9,21 @@ public class Computer : Interactable
      
     public override void Interact()
     {
-        canvas.SetActive(!canvas.activeInHierarchy);
-        Globals.isPlayerFrozen = canvas.activeInHierarchy;
+        canvas.SetActive(true);
+        Globals.isPlayerFrozen = true;
+    }
 
-        Debug.Log("Interacted with " + promptMessage);
+    public void CloseCanvas()
+    {
+        canvas.SetActive(false);
+        Globals.isPlayerFrozen = false;
+    }
+
+    public void Update()
+    {
+        if (canvas.activeInHierarchy && Input.GetKey(KeyCode.Escape))
+        {
+            CloseCanvas();
+        }
     }
 }
