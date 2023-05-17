@@ -33,16 +33,13 @@ public class DraggableNode : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnEndDrag(PointerEventData eventData)
     {
         transform.SetParent(parentAfterDrag);
-
         GetComponent<CanvasGroup>().blocksRaycasts = true;
-
         LayoutRebuilder.ForceRebuildLayoutImmediate(parentAfterDrag.GetComponent<RectTransform>());
-
     }
+
     public void OnPointerClick(PointerEventData eventData)
     {
         transform.SetParent(defaultParent);
-
         LayoutRebuilder.ForceRebuildLayoutImmediate(parentAfterDrag.GetComponent<RectTransform>());
     }
 }
