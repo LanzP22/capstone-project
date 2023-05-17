@@ -23,6 +23,7 @@ public class DraggableNode : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         transform.SetAsLastSibling();
 
         GetComponent<CanvasGroup>().blocksRaycasts = false;
+        LayoutRebuilder.ForceRebuildLayoutImmediate(parentAfterDrag.GetComponent<RectTransform>());
     }
 
     public void OnDrag(PointerEventData eventData)
