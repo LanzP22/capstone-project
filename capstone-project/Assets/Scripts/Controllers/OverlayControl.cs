@@ -8,10 +8,13 @@ public class OverlayControl : MonoBehaviour
     {
         cursorLockMode = Cursor.lockState;
         Cursor.lockState = CursorLockMode.None;
+
+        GameState.openedCanvas++;
     }
 
     void OnDisable()
     {
         Cursor.lockState = cursorLockMode;
+        GameState.openedCanvas--;
     }
 }

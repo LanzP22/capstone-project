@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Computer : Interactable
@@ -9,19 +6,22 @@ public class Computer : Interactable
      
     public override void Interact()
     {
+        OpenCanvas();
+    }
+
+    public void OpenCanvas()
+    {
         canvas.SetActive(true);
-        Globals.isPlayerFrozen = true;
     }
 
     public void CloseCanvas()
     {
         canvas.SetActive(false);
-        Globals.isPlayerFrozen = false;
     }
 
     public void Update()
     {
-        if (canvas.activeInHierarchy && Input.GetKey(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && canvas.activeInHierarchy)
         {
             CloseCanvas();
         }

@@ -34,9 +34,4 @@ public class Example1 : ExampleCode
         nameInput.text = defaultName;
         UpdateCode();
     }
-
-    public override void CopyCode()
-    {
-        GUIUtility.systemCopyBuffer = codeText.text;
-    }
 }

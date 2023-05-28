@@ -13,6 +13,7 @@ public class DraggableNode : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     void Awake()
     {
         defaultParent = transform.parent;
+        parentAfterDrag = defaultParent;
         value = GetComponentInChildren<TextMeshProUGUI>().text;
     }
 
@@ -40,6 +41,7 @@ public class DraggableNode : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        LayoutRebuilder.ForceRebuildLayoutImmediate(transform.parent.GetComponent<RectTransform>());
         transform.SetParent(defaultParent);
         LayoutRebuilder.ForceRebuildLayoutImmediate(parentAfterDrag.GetComponent<RectTransform>());
     }

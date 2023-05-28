@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (Globals.isPlayerFrozen)
+        if (GameState.isPlayerFrozen)
             return;
 
         float x = Input.GetAxis("Horizontal");

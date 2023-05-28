@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -16,7 +17,10 @@ public class NodeSlot : MonoBehaviour, IDropHandler
         // that already contains a node. This code makes them swap with
         // each others parent.
         if (transform.childCount != 0)
+        {
             transform.GetChild(0).SetParent(draggableNode.parentAfterDrag);
+            LayoutRebuilder.ForceRebuildLayoutImmediate(draggableNode.parentAfterDrag.GetComponent<RectTransform>());
+        }
 
         draggableNode.parentAfterDrag = transform;
     }

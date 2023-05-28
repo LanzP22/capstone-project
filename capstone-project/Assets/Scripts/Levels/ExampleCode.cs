@@ -30,9 +30,15 @@ public abstract class ExampleCode : MonoBehaviour
     }
 
     public abstract void UpdateCode();
+
     public abstract void RunCode();
+
     public abstract void ResetCode();
-    public abstract void CopyCode();
+
+    public void CopyCode()
+    {
+        GUIUtility.systemCopyBuffer = codeText.GetParsedText();
+    }
 
     public void UpdateLayout(Component component)
     {

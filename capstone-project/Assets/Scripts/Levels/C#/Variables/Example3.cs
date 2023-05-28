@@ -41,9 +41,4 @@ public class Example3 : ExampleCode
 
         UpdateCode();
     }
-
-    public override void CopyCode()
-    {
-        GUIUtility.systemCopyBuffer = codeText.GetParsedText();
-    }
 }

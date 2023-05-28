@@ -33,9 +33,4 @@ public class Example2 : ExampleCode
 
         UpdateCode();
     }
-
-    public override void CopyCode()
-    {
-        GUIUtility.systemCopyBuffer = codeText.text;
-    }
 }

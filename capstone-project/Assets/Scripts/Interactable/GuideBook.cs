@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GuideBook : Interactable
@@ -8,20 +6,24 @@ public class GuideBook : Interactable
 
     public override void Interact()
     {
+        OpenCanvas();
+    }
+
+    public void OpenCanvas()
+    {
         canvas.SetActive(true);
-        Globals.isPlayerFrozen = true;
     }
 
     public void CloseCanvas()
     {
         canvas.SetActive(false);
-        Globals.isPlayerFrozen = false;
     }
 
-    public void Update()
+    public void nUpdate()
     {
-        if (canvas.activeInHierarchy && Input.GetKey(KeyCode.Escape)) 
+        if (canvas.activeInHierarchy && Input.GetKeyDown(KeyCode.Escape)) 
         {
+            Debug.Log("GuideBook!");
             CloseCanvas();
         }
     }
