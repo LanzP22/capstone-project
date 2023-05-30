@@ -18,12 +18,4 @@ public class Computer : Interactable
     {
         canvas.SetActive(false);
     }
-
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape) && canvas.activeInHierarchy)
-        {
-            CloseCanvas();
-        }
-    }
 }

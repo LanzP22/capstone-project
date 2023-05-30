@@ -24,7 +24,7 @@ public class InteractController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E) && !GameState.isPlayerFrozen)
             {
-                interactable.BaseInteract();
+                interactable.Interact();
             }
         }
         else

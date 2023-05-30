@@ -3,6 +3,7 @@ using UnityEngine;
 public class GuideBook : Interactable
 {
     public GameObject canvas;
+    public TaskHandler taskHandler;
 
     public override void Interact()
     {
@@ -17,14 +18,6 @@ public class GuideBook : Interactable
     public void CloseCanvas()
     {
         canvas.SetActive(false);
-    }
-
-    public void nUpdate()
-    {
-        if (canvas.activeInHierarchy && Input.GetKeyDown(KeyCode.Escape)) 
-        {
-            Debug.Log("GuideBook!");
-            CloseCanvas();
-        }
+        taskHandler.FinishTask();
     }
 }
