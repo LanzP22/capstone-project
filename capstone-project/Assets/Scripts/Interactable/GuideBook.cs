@@ -12,12 +12,17 @@ public class GuideBook : Interactable
 
     public void OpenCanvas()
     {
+        StopPulse();
         canvas.SetActive(true);
+        OverlayControl.TransitionOpen(canvas);
     }
 
     public void CloseCanvas()
     {
-        canvas.SetActive(false);
-        taskHandler.FinishTask();
+        OverlayControl.TransitionClose(canvas, () =>
+        {
+            canvas.SetActive(false);
+            taskHandler.FinishTask();
+        });
     }
 }

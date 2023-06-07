@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class DraggableNode : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
+    public static DraggableNode current;
+
     [HideInInspector] public string value;
     [HideInInspector] public Transform defaultParent;
     [HideInInspector] public Transform parentAfterDrag;
@@ -20,11 +22,13 @@ public class DraggableNode : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnBeginDrag(PointerEventData eventData)
     {
         parentAfterDrag = transform.parent;
-        transform.SetParent(transform.parent.parent);
+        transform.SetParent(transform.parent.parent.parent.parent);
         transform.SetAsLastSibling();
 
         GetComponent<CanvasGroup>().blocksRaycasts = false;
         LayoutRebuilder.ForceRebuildLayoutImmediate(parentAfterDrag.GetComponent<RectTransform>());
+
+        current = this;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -37,6 +41,8 @@ public class DraggableNode : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         transform.SetParent(parentAfterDrag);
         GetComponent<CanvasGroup>().blocksRaycasts = true;
         LayoutRebuilder.ForceRebuildLayoutImmediate(parentAfterDrag.GetComponent<RectTransform>());
+
+        current = null;
     }
 
     public void OnPointerClick(PointerEventData eventData)

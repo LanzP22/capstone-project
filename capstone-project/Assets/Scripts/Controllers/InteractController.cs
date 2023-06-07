@@ -20,12 +20,16 @@ public class InteractController : MonoBehaviour
             if (interactable == null)
                 return;
 
-            interactableObjectText.text = interactable.promptMessage + "\nPress (E) to interact";
-
-            if (Input.GetKeyDown(KeyCode.E) && !GameState.isPlayerFrozen)
+            if (!interactable.interactable)
             {
-                interactable.Interact();
+                interactableObjectText.text = "";
+                return;
             }
+
+            interactableObjectText.text = interactable.promptMessage + "\nLeft click to interact";
+
+            if (Input.GetMouseButtonDown(0) && !GameState.isPlayerFrozen)
+                interactable.BaseInteract();
         }
         else
         {

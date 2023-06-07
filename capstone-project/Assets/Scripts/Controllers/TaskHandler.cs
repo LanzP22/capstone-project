@@ -9,6 +9,9 @@ public class TaskHandler : MonoBehaviour
 
     public void FinishTask()
     {
-        text.color = Color.green;
+        if (text.color != Color.green)
+        {
+            text.color = Color.green;
+        }
     }
 }

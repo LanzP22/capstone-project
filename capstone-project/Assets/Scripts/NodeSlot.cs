@@ -6,8 +6,31 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class NodeSlot : MonoBehaviour, IDropHandler
+public class NodeSlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
+    private float minWidth, minHeight;
+    private LayoutElement layoutElement;
+
+    public string correctValue;
+
+    void Awake()
+    {
+        layoutElement = GetComponent<LayoutElement>();
+
+        minWidth = layoutElement.minWidth; 
+        minHeight = layoutElement.minHeight;
+    }
+
+    public bool CheckAnswer()
+    {
+        if (gameObject.transform.childCount == 0)
+            return false;
+
+        string answer = gameObject.transform.GetChild(0).GetComponent<DraggableNode>().value;
+
+        return answer == correctValue;
+    }
+
     public void OnDrop(PointerEventData eventData)
     {
         GameObject dropped = eventData.pointerDrag;
@@ -23,5 +46,25 @@ public class NodeSlot : MonoBehaviour, IDropHandler
         }
 
         draggableNode.parentAfterDrag = transform;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (DraggableNode.current != null)
+        {
+            Rect rect = DraggableNode.current.GetComponent<RectTransform>().rect;
+
+            layoutElement.minWidth = rect.width;
+            layoutElement.minHeight = rect.height;
+            LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        layoutElement.minWidth = minWidth;
+        layoutElement.minHeight = minHeight;
+        LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
+        LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
     }
 }
